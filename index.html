@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="game">
+
+            <div class="player" id="player1">
+                <h2>Player 1</h2>
+                <div class="dice dice1">
+                    <div class="face front"></div>
+                    <div class="face back"></div>
+                    <div class="face top"></div>
+                    <div class="face bottom"></div>
+                    <div class="face right"></div>
+                    <div class="face left"></div>
+                </div>
+                <p>Score: <span class="score1">0</span></p>
+            </div>
+
+            <div class="player" id="player2">
+                <h2>Player 2</h2>
+                <div class="dice dice2">
+                    <div class="face front"></div>
+                    <div class="face back"></div>
+                    <div class="face top"></div>
+                    <div class="face bottom"></div>
+                    <div class="face right"></div>
+                    <div class="face left"></div>
+                </div>
+                <p>Score: <span class="score2">0</span></p>
+            </div>
+
+        </div>
+
+        <h3 class="result"></h3>
+
+        <button class="roll">Roll Dice</button>
+        <button class="change-names">Change Names</button>
+
+
+
+
+    </div>
+
+
+
+    <script>
+
+        let player1Name = prompt("Enter Player 1 Name:", "Player 1");
+        let player2Name = prompt("Enter Player 2 Name:", "Player 2");
+
+        const player1Title = document.querySelector("#player1 h2");
+        const player2Title = document.querySelector("#player2 h2");
+
+        player1Title.textContent = player1Name;
+        player2Title.textContent = player2Name;
+
+
+        const dice1 = document.querySelector('.dice1');
+        const dice2 = document.querySelector('.dice2');
+        const rollBtn = document.querySelector('.roll');
+
+        const score1El = document.querySelector('.score1');
+        const score2El = document.querySelector('.score2');
+        const resultEl = document.querySelector('.result');
+
+        let score1 = 0;
+        let score2 = 0;
+
+        function getRandom() {
+            return Math.floor(Math.random() * 6) + 1;
+        }
+
+        function rotateDice(dice, number) {
+
+            switch (number) {
+                case 1:
+                    dice.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                    break;
+                case 6:
+                    dice.style.transform = 'rotateX(180deg)';
+                    break;
+                case 2:
+                    dice.style.transform = 'rotateX(-90deg)';
+                    break;
+                case 5:
+                    dice.style.transform = 'rotateX(90deg)';
+                    break;
+                case 3:
+                    dice.style.transform = 'rotateY(90deg)';
+                    break;
+                case 4:
+                    dice.style.transform = 'rotateY(-90deg)';
+                    break;
+            }
+        }
+
+        rollBtn.addEventListener('click', () => {
+
+            const random1 = getRandom();
+            const random2 = getRandom();
+
+            rotateDice(dice1, random1);
+            rotateDice(dice2, random2);
+
+            if (random1 > random2) {
+                score1++;
+                resultEl.textContent = `${player1Name} Wins This Round 🎉`;
+            } else if (random2 > random1) {
+                score2++;
+                resultEl.textContent = `${player2Name} Wins This Round 🎉`;
+            } else {
+                resultEl.textContent = "It's a Draw 😄";
+            }
+
+
+            score1El.textContent = score1;
+            score2El.textContent = score2;
+
+        });
+
+        const changeBtn = document.querySelector('.change-names');
+
+        changeBtn.addEventListener('click', () => {
+            player1Name = prompt("Enter New Name for Player 1:", player1Name);
+            player2Name = prompt("Enter New Name for Player 2:", player2Name);
+
+            player1Title.textContent = player1Name;
+            player2Title.textContent = player2Name;
+        });
+
+
+    </script>
+</body>
+
+
+</html>
