@@ -1,11 +1,11 @@
 # dice-game
 **This is a rolling dice game.**
 
-🌐[Demo Project]()
+🌐[Demo Project](https://shabnamshabanpour.github.io/dice-game/)
 
 ** **
 
-<img width="517" height="374" alt="Image" src="https://github.com/user-attachments/assets/eacf45e7-6d9c-4e7b-bcc4-7a6782fc1441" />
+
 
 
 💻 Developed by shabnam shabanpour
